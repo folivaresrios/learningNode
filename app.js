@@ -1,9 +1,14 @@
-const port = process.env.PORT || 3000;
-const express = require('express');
+const port = process.env.PORT || 5000;
+import express from 'express';
 
 const app = express();
+
+import bootcamps from './routes/bootcamps.js';
 
 //Settings
 app.set('port', port);
 
-module.exports = app;
+//Route files
+app.use('/api/v1/bootcamps', bootcamps);
+
+export default app;
