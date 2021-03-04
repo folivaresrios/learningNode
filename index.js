@@ -7,8 +7,21 @@ const todos = [
 ];
 
 const server = http.createServer((req, res) => {
-  res.setHeader('Content-type', 'application/json');
-  res.setHeader('X-Powered-By', 'Node.js');
+  res.writeHead(201, {
+    'Content-type': 'application/json',
+    'X-Powered-By': 'Node.js',
+  });
+
+  let body = [];
+  req
+    .on('data', (chunk) => {
+      body.push(chunk);
+    })
+    .on('end', () => {
+      body = Buffer.concat(body).toString();
+      console.log(body);
+    });
+
   res.end(
     JSON.stringify({
       success: true,
