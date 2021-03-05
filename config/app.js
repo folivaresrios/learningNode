@@ -13,6 +13,7 @@ app.set('port', port);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+app.use(express.json());
 
 //Route files
 app.use('/api/v1/bootcamps', bootcamps);
